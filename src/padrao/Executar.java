@@ -1,6 +1,5 @@
 package padrao;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,65 +25,21 @@ public class Executar {
 		
         AlgoritmoGenetico algoritmo = new AlgoritmoGenetico();
         
-        //Gerar população inicial
-        algoritmo.inicializaPopulacao();
+        Individuo melhorSolucao = algoritmo.resolver();
         
-        //Avaliar população
-        algoritmo.getPopulacao().forEach(individuo -> individuo.avaliacao());
-        algoritmo.ordenarPopulacao();
-        algoritmo.verificarMelhorIndividuo();
+        System.out.println("### MELHOR SOLUÇÃO APÓS "+Parametros.NUMERO_MAXIMO_GERACOES+ " GERAÇÕES ###");
+        System.out.println("G: " + melhorSolucao.getGeracao() +
+                " Nota: " + melhorSolucao.getNotaAvaliacao() +
+                " Espaço: " + melhorSolucao.getEspacoUsado() +
+                " Cromossomo: " + melhorSolucao.getCromossomo());
         
-        System.out.println("MELHOR SOLUÇÃO: ");
-        printIndividuo(algoritmo.getMelhorSolucao());
-        
-        System.out.println("POPULAÇÃO COMPLETA: ");
-        algoritmo.getPopulacao().forEach(individuo -> printIndividuo(individuo));
-        
-        Double totalAvaliacoesGeracaoAtual = algoritmo.somarAvaliacoes();
-        
-        List<Individuo> novaPopulacao = new ArrayList<>();
-        for (int i = 0; i < Parametros.TAMANHO_POPULACAO/2; i++) {
-        	Integer posicaoProgenitor1 = algoritmo.selecionarProgenitor(totalAvaliacoesGeracaoAtual);
-        	Integer posicaoProgenitor2 = algoritmo.selecionarProgenitor(totalAvaliacoesGeracaoAtual);
-        	
-        	//Gera 2 descendentes a partir dos progenitores
-        	List<Individuo> filhos = algoritmo.getPopulacao().get(posicaoProgenitor1)
-        			.crossover(algoritmo.getPopulacao().get(posicaoProgenitor2));
-        	
-        	filhos.forEach(filho -> filho.mutacao(Parametros.TAXA_MULTACAO));
-        	
-        	novaPopulacao.addAll(filhos);
-		}
-         
-        //descarta a população anterior
-        algoritmo.setPopulacao(novaPopulacao);
-        
-        algoritmo.getPopulacao().forEach(individuo -> individuo.avaliacao());
-        algoritmo.ordenarPopulacao();
-        algoritmo.verificarMelhorIndividuo();
-        totalAvaliacoesGeracaoAtual = algoritmo.somarAvaliacoes();
-        
-        System.out.println("MELHOR SOLUÇÃO: ");
-        printIndividuo(algoritmo.getMelhorSolucao());
-        
-        System.out.println("POPULAÇÃO COMPLETA: ");
-        algoritmo.getPopulacao().forEach(individuo -> printIndividuo(individuo));
-        
-	}
-
-	public static void printIndividuo(Individuo individuo) {
-		System.out.println("Nota da avaliação: "+ individuo.getNotaAvaliacao());
-        System.out.println("Espaço total usado: "+ individuo.getEspacoUsado());
-        System.out.println("Solução/Cromossomo: "+ individuo.getCromossomo());
-        System.out.println("Geração: "+ individuo.getGeracao());
         System.out.println("Produtos Selecionados na solução: ");
-        for (int i = 0; i < PRODUTOS.size(); i++) {
-            if (individuo.getCromossomo().get(i)) {
-                System.out.println(" "+PRODUTOS.get(i).getNome());
+        for (int i = 0; i < Executar.PRODUTOS.size(); i++) {
+            if (melhorSolucao.getCromossomo().get(i)) {
+                System.out.println(" "+Executar.PRODUTOS.get(i).getNome());
             }
-        }
-        
-        System.out.println("===========================");
+        }    
 	}
+	
 }
 

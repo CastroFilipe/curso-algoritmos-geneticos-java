@@ -23,20 +23,17 @@ public class Executar {
 	
 	public static void main(String[] args) {
 		
-
-        
         AlgoritmoGenetico algoritmo = new AlgoritmoGenetico();
+        
+        //Gerar população inicial
         algoritmo.inicializaPopulacao();
         
-//        Individuo individuo1 = new Individuo(espacos, valores, AlgoritmoGenetico.GERACAO_INICIAL);
-//        individuo1.avaliacao();
-//        
-//        Individuo individuo2 = new Individuo(espacos, valores, AlgoritmoGenetico.GERACAO_INICIAL);
-//        individuo2.avaliacao();
-//        
-//        printIndividuo(individuo1);
-//        printIndividuo(individuo2);
-//        
+        //Avaliar população
+        algoritmo.getPopulacao().forEach(individuo -> individuo.avaliacao());
+        algoritmo.ordenarPopulacao();
+        
+        algoritmo.getPopulacao().forEach(individuo -> printIndividuo(individuo));
+          
 //        individuo1.crossover(individuo2);
 //        individuo1.mutacao(AlgoritmoGenetico.TAXA_MULTACAO);
 //        individuo2.mutacao(AlgoritmoGenetico.TAXA_MULTACAO);
@@ -44,13 +41,13 @@ public class Executar {
 	}
 
 	public static void printIndividuo(Individuo individuo) {
-		System.out.println("Nota: "+ individuo.getNotaAvaliacao());
-        System.out.println("Espaço usado: "+ individuo.getEspacoUsado());
-        System.out.println("Solução:"+ individuo.getCromossomo());
-        
+		System.out.println("Nota da avaliação: "+ individuo.getNotaAvaliacao());
+        System.out.println("Espaço total usado: "+ individuo.getEspacoUsado());
+        System.out.println("Solução/Cromossomo: "+ individuo.getCromossomo());
+        System.out.println("Produtos Selecionados na solução: ");
         for (int i = 0; i < PRODUTOS.size(); i++) {
             if (individuo.getCromossomo().get(i)) {
-                System.out.println("Nome: " + PRODUTOS.get(i).getNome());
+                System.out.println(" "+PRODUTOS.get(i).getNome());
             }
         }
         

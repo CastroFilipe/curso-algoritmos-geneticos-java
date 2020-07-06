@@ -13,7 +13,7 @@ import java.util.List;
  * o transporte no caminhão/mochila.
  * 
  * */
-public class Individuo {
+public class Individuo implements Comparable<Individuo> {
 
 	private List<Double> espacos = new ArrayList<>(); //o Individuo conhece o espaco(em m²) que cada Produto pode ocupar. 
 
@@ -190,6 +190,13 @@ public class Individuo {
 
 	public void setCromossomo(List<Boolean> cromossomo) {
 		this.cromossomo = cromossomo;
+	}
+
+	@Override
+	public int compareTo(Individuo o) {
+		int result = this.notaAvaliacao < o.getNotaAvaliacao() ? 1 : this.notaAvaliacao > o.getNotaAvaliacao() ? -1 : 0;
+		
+		return result;
 	}
 
 }

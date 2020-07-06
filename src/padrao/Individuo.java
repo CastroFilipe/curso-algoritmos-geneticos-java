@@ -88,8 +88,8 @@ public class Individuo implements Comparable<Individuo> {
         cromossomoFilho2.addAll(outroIndividuo.getCromossomo().subList(corte, this.cromossomo.size()));
         
         List<Individuo> filhos = Arrays.asList(
-        			new Individuo(this.espacos, this.valores, this.geracao++),
-        			new Individuo(this.espacos, this.valores, this.geracao++));
+        			new Individuo(this.espacos, this.valores, this.geracao+1),
+        			new Individuo(this.espacos, this.valores, this.geracao+1));
         
         filhos.get(0).setCromossomo(cromossomoFilho1);
         filhos.get(1).setCromossomo(cromossomoFilho2);
@@ -103,9 +103,7 @@ public class Individuo implements Comparable<Individuo> {
      * A taxaMutacao representa a probabilidade(em porcentagem) que um Genoma(elemento i do vetor) 
      * poderá sofrer mutação.
      * */
-    public Individuo mutacao(Double taxaMutacao) {
-        System.out.println("Antes da mutação: " + this.cromossomo);
-        
+    public Individuo mutacao(Double taxaMutacao) {  
         Boolean genomaAptoParaMutacao = false;
         
         for (int i = 0; i < this.cromossomo.size(); i++) {
@@ -119,8 +117,6 @@ public class Individuo implements Comparable<Individuo> {
                 }
             }
         }
-        
-        System.out.println("Depois da mutação: " + this.cromossomo);
         
         return this;
     }

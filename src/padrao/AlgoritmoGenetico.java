@@ -35,7 +35,41 @@ public class AlgoritmoGenetico {
 	public void ordenarPopulacao() {
 		Collections.sort(this.populacao);
 	}
+	
+    public void verificarMelhorIndividuo() {
+    	//Verifica se na geração atual existe um Individuo melhor que na geração anterior.
+        if (populacao.get(0).getNotaAvaliacao() > this.melhorSolucao.getNotaAvaliacao()) {
+            this.melhorSolucao = populacao.get(0);
+        }
+    }
+    
+    /*
+     * A soma das avaliações será usada na seleção dos pais, pelo método da Roleta Viciada.
+     * */
+    public Double somarAvaliacoes() {
+        Double soma = 0.0;
+        for (Individuo individuo: this.populacao) {
+            soma += individuo.getNotaAvaliacao();
+        }
+        return soma;
+    }
 
+    //Selecionar a posição do progenitor(pai) sorteado no giro da Roleta
+    public Integer selecionarProgenitor(Double somaAvaliacao) {
+        Integer posicaoProgenitor = -1;
+        Double valorSorteado = Math.random() * somaAvaliacao;
+        Double soma = 0.0;
+        int i = 0;
+        
+        while (i < this.populacao.size() && soma < valorSorteado) {
+            soma += this.populacao.get(i).getNotaAvaliacao();
+            posicaoProgenitor++;
+            i++;
+        }
+        
+        return posicaoProgenitor;
+    }
+    
 	public List<Individuo> getPopulacao() {
 		return populacao;
 	}

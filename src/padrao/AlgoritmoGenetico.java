@@ -10,7 +10,7 @@ public class AlgoritmoGenetico {
 
 	private Individuo melhorSolucao; // Guarda o individuo com a melhor solução.
 
-	private List<Individuo> melhoresCromossomos = new ArrayList<>(); // Guarda os melhores indivíduos
+	private List<Individuo> melhoresCromossomos = new ArrayList<>(); // Guarda os melhores indivíduos de cada geração para geração do gráfico
 
 	public void inicializarPopulacao() {
 		List<Double> espacos = new ArrayList<>();
@@ -42,7 +42,7 @@ public class AlgoritmoGenetico {
 	}
 
 	/*
-	 * A soma das avaliações será usada na seleção dos pais, pelo método da Roleta Viciada.
+	 * A soma das avaliações será usada na seleção dos pais, pelo método da Roleta.
 	 */
 	public Double somarAvaliacoes() {
 		Double soma = 0.0;
@@ -52,7 +52,7 @@ public class AlgoritmoGenetico {
 		return soma;
 	}
 
-	// Selecionar a posição do progenitor(pai) sorteado no giro da Roleta
+	// Selecionar a posição do progenitor(pai) (Algoritmo do Giro da Roleta)
 	public Integer selecionarProgenitor(Double somaAvaliacao) {
 		Integer posicaoProgenitor = -1;
 		Double valorSorteado = Math.random() * somaAvaliacao;
@@ -96,7 +96,7 @@ public class AlgoritmoGenetico {
             for (int i = 0; i < Parametros.TAMANHO_POPULACAO/2; i++) {
             	Integer posicaoProgenitor1 = this.selecionarProgenitor(totalAvaliacoesGeracaoAtual);
             	Integer posicaoProgenitor2 = this.selecionarProgenitor(totalAvaliacoesGeracaoAtual);
-             	
+            	
              	//Gera 2 descendentes a partir dos progenitores
              	List<Individuo> filhos = this.populacao.get(posicaoProgenitor1)
              			.crossover(this.populacao.get(posicaoProgenitor2));
@@ -111,8 +111,8 @@ public class AlgoritmoGenetico {
             
             this.getPopulacao().forEach(individuo -> individuo.avaliacao());
             this.ordenarPopulacao();
+            this.melhoresCromossomos.add(this.getPopulacao().get(0));
             this.verificarMelhorIndividuo();
-            this.melhoresCromossomos.add(this.melhorSolucao);
             this.printMelhorDaGeracao(this.populacao.get(0));
             
 		}

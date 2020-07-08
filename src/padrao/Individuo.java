@@ -40,6 +40,25 @@ public class Individuo implements Comparable<Individuo> {
 			gerarCromossomoAleatorioInicial();
 		}
 	}
+	
+	/**
+	 * Regra para gerar o cromossomo inicial de forma aleatória. 
+	 * A função só será chamada na criação de Individuos da primeira geração.
+	 * A probilidade é de 50% para gerar o valor zero/false e 50% para gerar o valor um/true.
+	 * 
+	 * Cada posição(Genoma) do cromossomo indica se o produto será ou não carregado no caminhão/mochila.
+	 * 
+	 */
+    private void gerarCromossomoAleatorioInicial() {
+
+		for (int i = 0; i < this.espacos.size(); i++) {
+			if (Math.random() < 0.5) {
+				this.cromossomo.add(false);// indica que o produto não fará parte do carregamento
+			} else {
+				this.cromossomo.add(true);// indica que o produto fará parte
+			}
+		}
+    }
 
 	/*
 	 * A função de avalaição(fitness) fará a avaliação da solução contida no cromossomo, 
@@ -72,7 +91,7 @@ public class Individuo implements Comparable<Individuo> {
      * A técnica de Recombinação utilizada é a técnica "Recombinação em um ponto" onde um ponto de corte é selecionado 
      * para ambos os progenitores e os cromossomos destes são misturados para a geração dos filhos.
      * 
-     * @retun retorna os dois filhos gerados
+     * @retun retorna os dois filhos gerados pelo cruzamentos dos progenitores
      * */
     public List<Individuo> crossover(Individuo outroIndividuo) {
     	//Seleciona o ponto de corte de forma aleatória
@@ -119,25 +138,6 @@ public class Individuo implements Comparable<Individuo> {
         }
         
         return this;
-    }
-
-	/**
-	 * Regra para gerar o cromossomo inicial de forma aleatória. 
-	 * A função só será chamada na criação de Individuos da primeira geração.
-	 * A probilidade é de 50% para gerar o valor zero/false e 50% para gerar o valor um/true.
-	 * 
-	 * Cada posição(Genoma) do cromossomo indica se o produto será ou não carregado no caminhão/mochila.
-	 * 
-	 */
-    private void gerarCromossomoAleatorioInicial() {
-
-		for (int i = 0; i < this.espacos.size(); i++) {
-			if (Math.random() < 0.5) {
-				this.cromossomo.add(false);// indica que o produto não fará parte do carregamento
-			} else {
-				this.cromossomo.add(true);// indica que o produto fará parte
-			}
-		}
     }
     
 	public List<Double> getEspacos() {

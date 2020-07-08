@@ -2,7 +2,7 @@ package padrao;
 
 /**
  * Um Produto que pode ser levado em um caminhão/mochila.
- * O produto contém o espaço que ocupa, dado em m², e um valor monetário.
+ * O produto contém o espaço que ocupa, dado em m³, e um valor monetário.
  * */
 public class Produto {
 

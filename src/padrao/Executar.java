@@ -27,19 +27,44 @@ public class Executar {
         
         Individuo melhorSolucao = algoritmo.resolver();
         
-        System.out.println("### MELHOR SOLUÇÃO APÓS "+Parametros.NUMERO_MAXIMO_GERACOES+ " GERAÇÕES ###");
-        System.out.println("G: " + melhorSolucao.getGeracao() +
-                " Nota: " + melhorSolucao.getNotaAvaliacao() +
-                " Espaço: " + melhorSolucao.getEspacoUsado() +
-                " Cromossomo: " + melhorSolucao.getCromossomo());
+        gerarRelatorioFinal(melhorSolucao);
+       
+        Grafico g = new Grafico(
+        		"Algoritmo genético", 
+        		"Evolução das soluções (Baseado nas notas)",
+        		"Geração",
+        		"Valor em R$", 
+        		algoritmo.getMelhoresCromossomos());
         
-        System.out.println("Produtos Selecionados na solução: ");
-        for (int i = 0; i < Executar.PRODUTOS.size(); i++) {
-            if (melhorSolucao.getCromossomo().get(i)) {
-                System.out.println(" "+Executar.PRODUTOS.get(i).getNome());
-            }
-        }    
+        g.pack();
+        g.setVisible(true);
+	}
+	
+	public static void gerarRelatorioFinal(Individuo melhorSolucao) {
+		System.out.println("######### EXECUÇÃO FINALIZADA #########");
+		System.out.println("\n### RELATÓRIO FINAL ###");
+		System.out.println("Parâmetros utilizados: "
+				+"\n  Número máximo de gerações: "+Parametros.NUMERO_MAXIMO_GERACOES
+				+"\n  Tamanho População: "+Parametros.TAMANHO_POPULACAO
+				+"\n  Taxa mutação genoma: "+Parametros.TAXA_MULTACAO + "("+Parametros.TAXA_MULTACAO*100+"%)"
+				+"\n  Limite de espaço mochila/caminhão: "+Parametros.LIMITE_ESPACO + " m³"
+				+"\n  Primeira Geração: "+Parametros.GERACAO_INICIAL);
+		
+		System.out.println("\nCritérios de parada: "
+				+"\n  Atingir o número máximo de gerações");
+		
+		System.out.println("\nMelhor solução encontrada: ");
+	    System.out.println("  Geração: " + melhorSolucao.getGeracao()
+	    	+", Nota: " + melhorSolucao.getNotaAvaliacao()
+	    	+", Espaço utilizado: " + melhorSolucao.getEspacoUsado() +" m³"
+	    	+"\n  Cromossomo: " + melhorSolucao.getCromossomo());
+	        
+	        System.out.println("\nProdutos Selecionados na solução: ");
+	        for (int i = 0; i < Executar.PRODUTOS.size(); i++) {
+	            if (melhorSolucao.getCromossomo().get(i)) {
+	                System.out.println("  "+Executar.PRODUTOS.get(i).getNome());
+	            }
+	        }    
 	}
 	
 }
-

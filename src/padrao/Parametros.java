@@ -26,9 +26,9 @@ public class Parametros {
 
 	public static final Integer TAMANHO_POPULACAO = 200;
 	
-	public static final Double LIMITE_ESPACO = 3.0;
+	public static final Double LIMITE_ESPACO = 4.0;
 	
 	public static final Integer NUMERO_MAXIMO_GERACOES = 100;
 	
-	public static final Double TAXA_ELITISMO = 0.00;
+	public static final Double TAXA_ELITISMO = 0.01;
 }

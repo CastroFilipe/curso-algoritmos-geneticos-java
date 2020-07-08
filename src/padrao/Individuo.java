@@ -25,7 +25,7 @@ public class Individuo implements Comparable<Individuo> {
 
 	private Integer geracao;// geração a qual o individuo pertence.
 
-	private List<Boolean> cromossomo = new ArrayList<>();// combinação de 1's e 0's que indica quais produtos serão levados no caminhão/mochila
+	private List<Integer> cromossomo = new ArrayList<>();// combinação de 1's e 0's que indica quais produtos serão levados no caminhão/mochila
 
 	public Individuo(List<Double> espacos, List<Double> valores, Integer geracao) {
 		super();
@@ -53,9 +53,9 @@ public class Individuo implements Comparable<Individuo> {
 
 		for (int i = 0; i < this.espacos.size(); i++) {
 			if (Math.random() < 0.5) {
-				this.cromossomo.add(false);// indica que o produto não fará parte do carregamento
+				this.cromossomo.add(0);// indica que o produto não fará parte do carregamento
 			} else {
-				this.cromossomo.add(true);// indica que o produto fará parte
+				this.cromossomo.add(1);// indica que o produto fará parte
 			}
 		}
     }
@@ -71,7 +71,7 @@ public class Individuo implements Comparable<Individuo> {
         Double nota = 0.0;
         Double somaEspacos = 0.0;
         for (int i = 0; i < this.cromossomo.size(); i++) {
-            if (this.cromossomo.get(i).equals(true)) {
+            if (this.cromossomo.get(i).equals(1)) {
                 nota += (Double) this.valores.get(i);
                 somaEspacos += (Double) this.espacos.get(i);
             }
@@ -98,11 +98,11 @@ public class Individuo implements Comparable<Individuo> {
         int corte = (int) Math.round(Math.random() * this.cromossomo.size());
         
         //Faz o cruzamento entre cromossomos
-        List<Boolean> cromossomoFilho1 = new ArrayList<>();
+        List<Integer> cromossomoFilho1 = new ArrayList<>();
         cromossomoFilho1.addAll(outroIndividuo.getCromossomo().subList(0, corte));
         cromossomoFilho1.addAll(this.cromossomo.subList(corte, this.cromossomo.size()));
         
-        List<Boolean> cromossomoFilho2 = new ArrayList<>();
+        List<Integer> cromossomoFilho2 = new ArrayList<>();
         cromossomoFilho2.addAll(this.cromossomo.subList(0, corte));
         cromossomoFilho2.addAll(outroIndividuo.getCromossomo().subList(corte, this.cromossomo.size()));
         
@@ -129,10 +129,10 @@ public class Individuo implements Comparable<Individuo> {
         	genomaAptoParaMutacao = Math.random() < taxaMutacao ? true : false;
         	
             if (genomaAptoParaMutacao) {
-                if (this.cromossomo.get(i).equals(true)) {
-                    this.cromossomo.set(i, false);
+                if (this.cromossomo.get(i).equals(1)) {
+                    this.cromossomo.set(i, 0);
                 } else {
-                    this.cromossomo.set(i, true);
+                    this.cromossomo.set(i, 1);
                 }
             }
         }
@@ -180,11 +180,11 @@ public class Individuo implements Comparable<Individuo> {
 		this.geracao = geracao;
 	}
 
-	public List<Boolean> getCromossomo() {
+	public List<Integer> getCromossomo() {
 		return cromossomo;
 	}
 
-	public void setCromossomo(List<Boolean> cromossomo) {
+	public void setCromossomo(List<Integer> cromossomo) {
 		this.cromossomo = cromossomo;
 	}
 

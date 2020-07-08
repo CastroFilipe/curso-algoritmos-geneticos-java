@@ -70,10 +70,10 @@ public class AlgoritmoGenetico {
 
 	private void printMelhorDaGeracao(Individuo melhor, Integer geracaoAtual) {
         System.out.println("Geração "+ geracaoAtual+ " - Info Melhor Indivíduo: ");
-        System.out.println("Geração onde nasceu: " + melhor.getGeracao()
+        System.out.println("  Geração onde nasceu: " + melhor.getGeracao()
         	+"  Nota: " + Utils.formatar(melhor.getNotaAvaliacao())
         	+"  Espaço: " + Utils.formatar(melhor.getEspacoUsado()) + " m³"
-        	+"  Cromossomo: " + melhor.getCromossomo());
+        	+"\n  Cromossomo: " + melhor.getCromossomo());
 
 		System.out.println("===========================");
 	}

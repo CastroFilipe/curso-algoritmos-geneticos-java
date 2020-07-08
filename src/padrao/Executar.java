@@ -46,7 +46,9 @@ public class Executar {
 		System.out.println("Parâmetros utilizados: "
 				+"\n  Número máximo de gerações: "+Parametros.NUMERO_MAXIMO_GERACOES
 				+"\n  Tamanho População: "+Parametros.TAMANHO_POPULACAO
-				+"\n  Taxa mutação genoma: "+Parametros.TAXA_MULTACAO + "("+Parametros.TAXA_MULTACAO*100+"%)"
+				+"\n  Taxa mutação genoma: "+Parametros.TAXA_MUTACAO + "("+Parametros.TAXA_MUTACAO*100+"%)"
+				+"\n  Taxa de Elitismo: "+Parametros.TAXA_ELITISMO + "("+Parametros.TAXA_ELITISMO*100+"%)"
+				+" -> "+(int)(Parametros.TAMANHO_POPULACAO*Parametros.TAXA_ELITISMO)+" melhores indivíduo(s) selecionados"
 				+"\n  Limite de espaço mochila/caminhão: "+Parametros.LIMITE_ESPACO + " m³"
 				+"\n  Primeira Geração: "+Parametros.GERACAO_INICIAL);
 		

@@ -57,8 +57,8 @@ public class Executar {
 		
 		System.out.println("\nMelhor solução encontrada: ");
 	    System.out.println("  Geração: " + melhorSolucao.getGeracao()
-	    	+", Nota: " + melhorSolucao.getNotaAvaliacao()
-	    	+", Espaço utilizado: " + melhorSolucao.getEspacoUsado() +" m³"
+	    	+"  Nota: " + Utils.formatar(melhorSolucao.getNotaAvaliacao())
+	    	+"  Espaço utilizado: " + Utils.formatar(melhorSolucao.getEspacoUsado()) +" m³"
 	    	+"\n  Cromossomo: " + melhorSolucao.getCromossomo());
 	        
 	        System.out.println("\nProdutos Selecionados na solução: ");

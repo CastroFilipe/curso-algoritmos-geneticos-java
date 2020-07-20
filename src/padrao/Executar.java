@@ -94,7 +94,7 @@ public class Executar {
 	        int numeroProdutosImpressos = 0;
 	        for (int i = 0; i < Executar.PRODUTOS.size(); i++) {
 	            if (melhorSolucao.getCromossomo().get(i).equals(1)) {
-	            	System.out.print("  "+Executar.PRODUTOS.get(i).getNome()+"  | ");
+	            	System.out.print("  "+Executar.PRODUTOS.get(i).getNome()+" |");
 	            	numeroProdutosImpressos++;
 	            }
 	            

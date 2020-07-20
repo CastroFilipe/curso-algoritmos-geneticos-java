@@ -22,13 +22,13 @@ public class Parametros {
 	
 	public static final Integer GERACAO_INICIAL = 0;
 	
-	public static final Double TAXA_MUTACAO = 0.05;
+	public static final Double TAXA_MUTACAO = 0.15;
 
 	public static final Integer TAMANHO_POPULACAO = 200;
 	
 	public static final Double LIMITE_ESPACO = 4.0;
 	
-	public static final Integer NUMERO_MAXIMO_GERACOES = 100;
+	public static final Integer NUMERO_MAXIMO_GERACOES = 1000;
 	
-	public static final Double TAXA_ELITISMO = 0.01;
+	public static final Double TAXA_ELITISMO = 0.25;
 }
